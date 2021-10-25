@@ -28,7 +28,7 @@ namespace BufferedSteamClient
             IPAddress ipAddress = host.AddressList[0];
 
             clientSocket.Connect(new IPEndPoint(
-                Dns.Resolve(remoteName).AddressList[0], 1800));
+                ipAddress, 1800));
 
             Console.WriteLine("Client is connected.\n");
 

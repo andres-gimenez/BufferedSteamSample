@@ -19,8 +19,8 @@ namespace BufferedSteamServer
             byte[] dataToSend = new byte[2000000];
             new Random().NextBytes(dataToSend);
 
-            IPAddress ipAddress =
-                Dns.Resolve(Dns.GetHostName()).AddressList[0];
+            var host = Dns.GetHostEntry("127.0.0.1");
+            IPAddress ipAddress = host.AddressList[0];
 
             IPEndPoint ipEndpoint = new IPEndPoint(ipAddress, 1800);
 

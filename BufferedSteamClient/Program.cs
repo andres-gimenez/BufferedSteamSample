@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 
@@ -13,20 +14,18 @@ namespace BufferedSteamClient
 
         static void Main(string[] args)
         {
-            // Check that an argument was specified when the
-            // program was invoked.
-            if (args.Length == 0)
-            {
-                Console.WriteLine("Error: The name of the host computer" +
-                    " must be specified when the program is invoked.");
-                return;
-            }
-
-            string remoteName = args[0];
+            string remoteName;
+            if (args.Any())
+                remoteName = args[0];
+            else
+                remoteName = "127.0.0.1";
 
             // Create the underlying socket and connect to the server.
             Socket clientSocket = new Socket(AddressFamily.InterNetwork,
                 SocketType.Stream, ProtocolType.Tcp);
+
+            var host = Dns.GetHostEntry(remoteName);
+            IPAddress ipAddress = host.AddressList[0];
 
             clientSocket.Connect(new IPEndPoint(
                 Dns.Resolve(remoteName).AddressList[0], 1800));

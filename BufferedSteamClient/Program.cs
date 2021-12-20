@@ -28,7 +28,7 @@ namespace BufferedSteamClient
             IPAddress ipAddress = host.AddressList[0];
 
             clientSocket.Connect(new IPEndPoint(
-                ipAddress, 1800));
+                ipAddress, 2800));
 
             Console.WriteLine("Client is connected.\n");
 
@@ -36,10 +36,8 @@ namespace BufferedSteamClient
             // then create a BufferedStream on top of the NetworkStream.
             // Both streams are disposed when execution exits the
             // using statement.
-            using (Stream
-                netStream = new NetworkStream(clientSocket, true),
-                bufStream =
-                      new BufferedStream(netStream, streamBufferSize))
+            using (Stream netStream = new NetworkStream(clientSocket, true),
+                bufStream = new BufferedStream(netStream, streamBufferSize))
             {
                 // Check whether the underlying stream supports seeking.
                 Console.WriteLine("NetworkStream {0} seeking.\n",

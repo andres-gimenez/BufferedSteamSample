@@ -22,7 +22,7 @@ namespace BufferedSteamServer
             var host = Dns.GetHostEntry("127.0.0.1");
             IPAddress ipAddress = host.AddressList[0];
 
-            IPEndPoint ipEndpoint = new IPEndPoint(ipAddress, 1800);
+            IPEndPoint ipEndpoint = new IPEndPoint(ipAddress, 2800);
 
             // Create a socket and listen for incoming connections.
             using (Socket listenSocket = new Socket(
